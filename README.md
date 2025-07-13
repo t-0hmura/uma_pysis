@@ -5,7 +5,7 @@ In this implementation, UMA can provides energies, forces and **Analytic Hessian
 
 ---
 
-## 1 · Installation
+## 1 · Installation (including fairchem and pysisyphus installation)
 
 ### CUDA 12.6
 
