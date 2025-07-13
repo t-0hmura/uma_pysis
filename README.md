@@ -48,12 +48,20 @@ The script registers a calculator called `uma_pysis`, so any YAML pysisyphus inp
 
 ```python
 from uma_pysis import uma_pysis
+from pysisyphus.io.xyz import geom_from_xyz
 
+geom = geom_from_xyz('reac.xyz')
 calc = uma_pysis(model="uma-s-1p1")  # choose checkpoint as desired
 
-E = calc.get_energy(elem, coords)["energy"]     # Hartree
-F = calc.get_forces(elem, coords)["forces"]     # Hartree·Bohr⁻¹
-H = calc.get_hessian(elem, coords)["hessian"]   # (3N × 3N) analytic Hessian
+geom.set_calculator(calc)
+
+E = geom.energy     # Hartree
+F = geom.forces     # Hartree·Bohr⁻¹
+H = geom.hessian    # (3N × 3N) analytic Hessian
+
+print(f'Energy: {E:.6f} Hartree')
+print(f'Max Force : {forces.max():.6f} Hartree·Bohr⁻¹')
+print(f"Hessian shape: {hessian.shape}")
 ```
 
 ---
@@ -64,10 +72,11 @@ The **examples** directory shows a single‑step *growing‑string* TS search:
 
 ```
 examples/
-├─ run.sh          # one‑liner that launches the job
+├─ example.py      # Exmaple for Python API
+├─ run.sh          # One‑liner that launches the job
 ├─ input.yaml      # PySisyphus workflow
-├─ reac.xyz        # reactant geometry
-└─ prod.xyz        # product geometry
+├─ reac.xyz        # Reactant geometry
+└─ prod.xyz        # Product geometry
 ```
 
 Running
@@ -78,3 +87,7 @@ bash run.sh
 ```
 
 optimises the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one.
+
+## References
+[1] Wood, B. M., Dzamba, M., Fu, X., Gao, M., Shuaibi, M., Barroso-Luque, L., Abdelmaqsoud, K., Gharakhanyan, V., Kitchin, J. R., Levine, D. S., Michel, K., Sriram, A., Cohen, T., Das, A., Rizvi, A., Sahoo, S. J., Ulissi, Z. W., & Zitnick, C. L. (2025). UMA: A Family of Universal Models for Atoms. http://arxiv.org/abs/2506.23971
+[2] Steinmetzer, J., Kupfer, S., & Gräfe, S. (2021). pysisyphus: Exploring potential energy surfaces in ground and excited states. International Journal of Quantum Chemistry, 121(3). https://doi.org/10.1002/qua.26390
