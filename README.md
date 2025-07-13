@@ -60,8 +60,8 @@ F = geom.forces     # Hartree·Bohr⁻¹
 H = geom.hessian    # (3N × 3N) analytic Hessian
 
 print(f'Energy: {E:.6f} Hartree')
-print(f'Max Force : {forces.max():.6f} Hartree·Bohr⁻¹')
-print(f"Hessian shape: {hessian.shape}")
+print(f'Max Force : {F.max():.6f} Hartree·Bohr⁻¹')
+print(f"Hessian shape: {H.shape}")
 ```
 
 ---
