@@ -49,7 +49,7 @@ class UMAcore:
         if device == "auto":
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device_str = device
-        self.device = torch.device(device if device == "cpu" else f"cuda:{torch.cuda.current_device()}")
+        self.device = torch.device(device)
 
         self._AtomicData = AtomicData
         self._collater   = data_list_collater

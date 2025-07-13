@@ -1,0 +1,27 @@
+geom:
+ type: dlc
+ fn: [reac.xyz, prod.xyz]
+preopt:
+cos:
+ type: gs
+ max_nodes: 20
+ climb: True
+opt:
+ type: string
+ align: False
+ max_cycles: 100
+tsopt:
+ type: rsirfo
+ do_hess: True
+ thresh: gau
+ hessian_recalc: 5
+irc:
+ type: eulerpc
+endopt:
+calc:
+ type: uma_pysis
+ charge: 0
+ spin: 1
+ model: uma-m-1p1
+ task_name: omol
+ device: auto

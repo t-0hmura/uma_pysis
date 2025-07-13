@@ -12,11 +12,14 @@ dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = [
     "fairchem-core",
-    "pysisyphus"
+    "pysisyphus",
+    "numpy",
+    "torch",
+    "ase"
 ]
 
 [project.scripts]
-uma_pysis = "mlmm.mlmm_pysis:run_pysis"
+uma_pysis = "uma_pysis.uma_pysis:run_pysis"
 
 [tool.setuptools.packages.find]
 where = ["."]
