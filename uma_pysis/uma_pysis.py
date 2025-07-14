@@ -10,6 +10,7 @@ from typing import List, Sequence, Optional
 
 import numpy as np
 import torch
+import torch.nn as nn
 from ase import Atoms
 
 from fairchem.core import pretrained_mlip
@@ -56,7 +57,7 @@ class UMAcore:
 
         # Predictor in double precision -------------------------------
         self.predict = pretrained_mlip.get_predict_unit(model, device=self.device_str)
-        self.predictor.model.eval()
+        self.predict.model.eval()
         for m in self.predict.model.modules():
             if isinstance(m, nn.Dropout):
                 m.p = 0.0
