@@ -58,9 +58,9 @@ class UMAcore:
         self.predict = pretrained_mlip.get_predict_unit(model, device=self.device_str)
         self.predictor.model.eval()
         for m in self.predict.model.modules():
-        if isinstance(m, nn.Dropout):
-            m.p = 0.0
-            m.eval()
+            if isinstance(m, nn.Dropout):
+                m.p = 0.0
+                m.eval()
 
         self.elem      = list(elem)
         self.charge    = charge
