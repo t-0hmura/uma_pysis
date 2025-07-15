@@ -10,6 +10,7 @@ In this implementation, UMA can provides energies, forces and **Analytic Hessian
 ### CUDA 12.6
 
 ```bash
+pip install fairchem-core
 pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login    # required to download the pretrained UMA checkpoints
 ```
@@ -17,8 +18,9 @@ huggingface-cli login    # required to download the pretrained UMA checkpoints
 ### CUDA 12.8 (needed for RTX 50 series)
 
 ```bash
-pip install git+https://github.com/t-0hmura/uma_pysis.git
+pip install fairchem-core
 pip install --force-reinstall torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login
 ```
 

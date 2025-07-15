@@ -74,7 +74,7 @@ class UMAcore:
 
     # ----------------------------------------------------------------
     def _ase_to_batch(self, atoms: Atoms):
-        """Convert ASE Atoms → UMA Batch (float64)."""
+        """Convert ASE Atoms → UMA AtomicData(Batch). Only used when backend='uma'."""
 
         default_max_neigh = self.predict.model.module.backbone.max_neighbors
         default_radius    = self.predict.model.module.backbone.cutoff
@@ -89,9 +89,9 @@ class UMAcore:
             max_neigh=max_neigh,
             radius   =radius,
             r_edges  =r_edges,
-        ).to(self.device, dtype=torch.float64)
+        ).to(self.device)
         data.dataset = self.task_name
-        return self._collater([data], otf_graph=True).to(self.device, dtype=torch.float64)
+        return self._collater([data], otf_graph=True).to(self.device)
 
     # ----------------------------------------------------------------
     def compute(
@@ -109,7 +109,7 @@ class UMAcore:
         atoms = Atoms(self.elem, positions=coord_ang)
         batch = self._ase_to_batch(atoms)
 
-        batch.pos = batch.pos.detach().clone().requires_grad_(hessian)
+        batch.pos = batch.pos.detach().clone().requires_grad_(True)
 
         res      = self.predict.predict(batch)
         energy   = float(res["energy"].double().squeeze().item())
