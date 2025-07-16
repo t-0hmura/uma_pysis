@@ -1,10 +1,9 @@
 geom:
  type: dlc
  fn: [reac.xyz, prod.xyz]
-preopt:
 cos:
  type: gs
- max_nodes: 20
+ max_nodes: 10
  climb: True
 opt:
  type: string
@@ -22,6 +21,6 @@ calc:
  type: uma_pysis
  charge: 0
  spin: 1
- model: uma-m-1p1
+ model: uma-s-1p1
  task_name: omol
  device: auto
