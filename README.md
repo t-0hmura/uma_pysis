@@ -93,3 +93,7 @@ optimises the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-
 ## References
 [1] Wood, B. M., Dzamba, M., Fu, X., Gao, M., Shuaibi, M., Barroso-Luque, L., Abdelmaqsoud, K., Gharakhanyan, V., Kitchin, J. R., Levine, D. S., Michel, K., Sriram, A., Cohen, T., Das, A., Rizvi, A., Sahoo, S. J., Ulissi, Z. W., & Zitnick, C. L. (2025). UMA: A Family of Universal Models for Atoms. http://arxiv.org/abs/2506.23971   
 [2] Steinmetzer, J., Kupfer, S., & Gräfe, S. (2021). pysisyphus: Exploring potential energy surfaces in ground and excited states. International Journal of Quantum Chemistry, 121(3). https://doi.org/10.1002/qua.26390
+
+## Citation
+This work is part of [**ML/MM tools**](https://github.com/t-0hmura/mlmm_tools). If you find this work helpful for your research, please cite:  
+*Detailed methodological notes and benchmarks will be released shortly on **ChemRxiv**.*
