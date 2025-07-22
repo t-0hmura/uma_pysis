@@ -61,7 +61,6 @@ class UMAcore:
         for m in self.predict.model.modules():
             if isinstance(m, nn.Dropout):
                 m.p = 0.0
-                m.eval()
 
         self.elem      = list(elem)
         self.charge    = charge
