@@ -95,5 +95,5 @@ optimises the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-
 [2] Steinmetzer, J., Kupfer, S., & Gräfe, S. (2021). pysisyphus: Exploring potential energy surfaces in ground and excited states. International Journal of Quantum Chemistry, 121(3). https://doi.org/10.1002/qua.26390
 
 ## Citation
-This work is part of [**ML/MM tools**](https://github.com/t-0hmura/mlmm_tools). If you find this work helpful for your research, please cite:  
+This work is part of [**ML/MM toolkit**](https://github.com/t-0hmura/mlmm_toolkit). If you find this work helpful for your research, please cite:  
 *Detailed methodological notes and benchmarks will be released shortly on **ChemRxiv**.*
