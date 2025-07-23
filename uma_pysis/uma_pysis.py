@@ -2,7 +2,7 @@
 - uma_pysis.py
 
 UMA Calculator Wrapper for PySisyphus.
-Return Energy, Force, Hessian.
+Return Energy, Force, Analytic Hessian.
 """
 
 from __future__ import annotations
