@@ -30,9 +30,10 @@ huggingface-cli login
 |---------|---------|
 | Python  | ≥ 3.11  |
 | PyTorch | 2.6 + (*or* 2.7.0 for CUDA 12.8) |
-| fairchem‑core | latest |
-| PySisyphus | latest |
-| ASE, NumPy | — |
+| fairchem‑core | — |
+| PySisyphus | — |
+| ASE | >= 3.25.0 |
+| NumPy | < 2.0 |
 
 ---
 
