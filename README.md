@@ -48,7 +48,7 @@ uma_pysis input.yaml
 
 The script registers a calculator called `uma_pysis`, so any YAML pysisyphus input that lists this name will automatically pull in UMA energies, forces and Hessians.
 
-### Python
+### Python API
 
 ```python
 # examples/small/example.py
@@ -56,7 +56,13 @@ from uma_pysis import uma_pysis
 from pysisyphus.io.xyz import geom_from_xyz
 
 geom = geom_from_xyz('reac.xyz')
-calc = uma_pysis(model="uma-s-1p1")  # choose checkpoint as desired
+calc = uma_pysis(
+    charge=0, 
+    spin=1, 
+    model="uma-s-1p1", # Name of UMA model checkpoint. Currently, uma-s-1p1 and uma-m-1p1 (and uma-s-1) are available.
+    task_name="omol",  # Task name. Currently, oc20, omat, omol, odac and omc are available.
+    device="auto"      # "auto", "cpu", or "cuda".
+    )
 
 geom.set_calculator(calc)
 
