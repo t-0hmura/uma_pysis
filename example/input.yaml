@@ -16,7 +16,15 @@ tsopt:
  hessian_recalc: 5
 irc:
  type: eulerpc
+ max_cycles: 100
+ hessian_recalc: 5
+ step_length: 0.05
 endopt:
+ type: rfo
+ do_hess: True
+ thresh: gau
+ T: 298.15
+ p: 101325.0
 calc:
  type: uma_pysis
  charge: 0

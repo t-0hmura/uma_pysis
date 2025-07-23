@@ -1,6 +1,6 @@
 # UMA – PySisyphus Interface
 
-A thin wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine‑learned interatomic potentials* to use with the [**PySisyphus**](https://pysisyphus.readthedocs.io/), a software-suite for the exploration of potential energy surfaces.  
+A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine‑learned interatomic potentials* to use with the [**PySisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software-suite for the exploration of potential energy surfaces.  
 In this implementation, UMA can provides energies, forces and **Analytic Hessians** by back‑propagating *twice* through its neural network. This interface connect them to PySisyphus so you can carry out transition‑state searches, growing‑string calculations, vibrational analysis, etc., with one of the latest MLIPs.
 
 ---
@@ -85,10 +85,11 @@ Running
 
 ```bash
 cd examples
-bash run.sh
+uma_pysis input.yaml
 ```
 
-optimises the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one.
+calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one **in ONE command**.
+> See **https://pysisyphus.readthedocs.io** for more information about **PySisyphus**.
 
 ## References
 [1] Wood, B. M., Dzamba, M., Fu, X., Gao, M., Shuaibi, M., Barroso-Luque, L., Abdelmaqsoud, K., Gharakhanyan, V., Kitchin, J. R., Levine, D. S., Michel, K., Sriram, A., Cohen, T., Das, A., Rizvi, A., Sahoo, S. J., Ulissi, Z. W., & Zitnick, C. L. (2025). UMA: A Family of Universal Models for Atoms. http://arxiv.org/abs/2506.23971   

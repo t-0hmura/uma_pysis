@@ -15,6 +15,7 @@ dependencies = [
     "torch",
     "numpy<2.0",
     "ase>=3.25.0",
+    "thermoanalysis @ git+https://github.com/eljost/thermoanalysis.git"
 ]
 
 [project.scripts]
