@@ -16,7 +16,7 @@ pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login    # required to access the pretrained UMA checkpoints
 ```
 
-### CUDA 12.8 (needed for RTX 50 series)
+### CUDA 12.8 (recommended for RTX 50 series)
 
 ```bash
 pip install fairchem-core
