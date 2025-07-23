@@ -1,5 +1,5 @@
 geom:
- type: dlc
+ type: cart
  fn: ts_cand.xyz
 tsopt:
  type: rsirfo
