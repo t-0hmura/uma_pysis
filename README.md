@@ -50,6 +50,7 @@ The script registers a calculator called `uma_pysis`, so any YAML pysisyphus inp
 ### Python
 
 ```python
+# examples/small/example.py
 from uma_pysis import uma_pysis
 from pysisyphus.io.xyz import geom_from_xyz
 
@@ -75,21 +76,31 @@ The **examples** directory shows a single‑step *growing‑string* TS search:
 
 ```
 examples/
-├─ example.py      # Exmaple for Python API
-├─ run.sh          # One‑liner that launches the job
-├─ input.yaml      # PySisyphus workflow
-├─ reac.xyz        # Reactant geometry
-└─ prod.xyz        # Product geometry
+├── small/              # Example of small system
+│   ├── reac.xyz        # Reactant geometry
+│   ├── prod.xyz        # Product geometry
+│   ├── input.yaml      # Input for PySisyphus (Reactant & Product --> $\Delta G^{\ddagger}$ & $\Delta G$)
+│   └── example.py      # Exmaple for Python API
+├── large/              # Example of large system
+│   ├── ts_cand.xyz     # TS candidate geometry
+│   └── input.yaml      # Input for PySisyphus (TS candidate --> $\Delta G^{\ddagger}$ & $\Delta G$)
+└── run.sh              # Bash script to run the all example
 ```
 
-Running
-
+Running  
 ```bash
-cd examples
+cd examples/small
 uma_pysis input.yaml
 ```
+calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one **in ONE command** from structures of **Reactant** & **Product**.  
 
-calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one **in ONE command**.
+Also, running  
+```bash
+cd examples/large
+uma_pysis input.yaml
+```
+calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement catalyzed by *Spiroligozyme* BPC13 (an enzyme mimicing compound) **in ONE command** from structures of **TS candidate** (Parker, M. et al. (2014). J. Am. Chem. Soc. 136(10), 3817–3827. doi: 10.1021/ja409214c).  
+
 > See **https://pysisyphus.readthedocs.io** for more information about **PySisyphus**.
 
 ## References
