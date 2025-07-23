@@ -1,8 +1,8 @@
-# UMA – PySisyphus Interface
+# UMA – Pysisyphus Interface
 
-A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine‑learned interatomic potentials* to use with the [**PySisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software-suite for the exploration of potential energy surfaces.  
+A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine‑learned interatomic potentials* to use with the [**Pysisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software-suite for the exploration of potential energy surfaces.  
 
-In this implementation, Energy, Force and **Analytic Hessian** were extracted from UMA model by back‑propagating *twice* through its neural network. This interface connect them to PySisyphus so you can carry out growing‑string calculations, transition‑state searches, vibrational analysis, $\Delta G^{\ddagger}$ & $\Delta G$ calculation etc., with one of the latest MLIPs.
+In this implementation, Energy, Force and **Analytic Hessian** were extracted from UMA model by back‑propagating *twice* through its neural network. This interface connect them to Pysisyphus so you can carry out growing‑string calculations, transition‑state searches, vibrational analysis, $\Delta G^{\ddagger}$ & $\Delta G$ calculation etc., with one of the latest MLIPs.
 
 ---
 
@@ -32,7 +32,7 @@ huggingface-cli login
 | Python  | ≥ 3.11  |
 | PyTorch | 2.6 + (*or* 2.7.0 for CUDA 12.8) |
 | fairchem‑core | — |
-| PySisyphus | — |
+| Pysisyphus | — |
 | ASE | >= 3.25.0 |
 | NumPy | < 2.0 |
 
@@ -80,11 +80,11 @@ examples/
 ├── small/              # Example of small system
 │   ├── reac.xyz        # Reactant geometry
 │   ├── prod.xyz        # Product geometry
-│   ├── input.yaml      # Input for PySisyphus (Reactant & Product --> $\Delta G^{\ddagger}$ & $\Delta G$)
+│   ├── input.yaml      # Input for Pysisyphus (Reactant & Product --> $\Delta G^{\ddagger}$ & $\Delta G$)
 │   └── example.py      # Exmaple for Python API
 ├── large/              # Example of large system
 │   ├── ts_cand.xyz     # TS candidate geometry
-│   └── input.yaml      # Input for PySisyphus (TS candidate --> $\Delta G^{\ddagger}$ & $\Delta G$)
+│   └── input.yaml      # Input for Pysisyphus (TS candidate --> $\Delta G^{\ddagger}$ & $\Delta G$)
 └── run.sh              # Bash script to run the all example
 ```
 
@@ -102,7 +102,7 @@ uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement catalyzed by *Spiroligozyme* BPC13 (an enzyme mimicing compound) **in ONE command** from a structure of **TS candidate** (Parker, M. et al. (2014). J. Am. Chem. Soc. 136(10), 3817–3827. doi: 10.1021/ja409214c).  
 
-> See **https://pysisyphus.readthedocs.io** for more information about **PySisyphus**.
+> See **https://pysisyphus.readthedocs.io** for more information about **Pysisyphus**.
 
 ## References
 [1] Wood, B. M., Dzamba, M., Fu, X., Gao, M., Shuaibi, M., Barroso-Luque, L., Abdelmaqsoud, K., Gharakhanyan, V., Kitchin, J. R., Levine, D. S., Michel, K., Sriram, A., Cohen, T., Das, A., Rizvi, A., Sahoo, S. J., Ulissi, Z. W., & Zitnick, C. L. (2025). UMA: A Family of Universal Models for Atoms. http://arxiv.org/abs/2506.23971   
