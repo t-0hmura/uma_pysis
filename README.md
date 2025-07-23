@@ -116,6 +116,9 @@ calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrange
 [1] Wood, B. M., Dzamba, M., Fu, X., Gao, M., Shuaibi, M., Barroso-Luque, L., Abdelmaqsoud, K., Gharakhanyan, V., Kitchin, J. R., Levine, D. S., Michel, K., Sriram, A., Cohen, T., Das, A., Rizvi, A., Sahoo, S. J., Ulissi, Z. W., & Zitnick, C. L. (2025). UMA: A Family of Universal Models for Atoms. http://arxiv.org/abs/2506.23971   
 [2] Steinmetzer, J., Kupfer, S., & Gräfe, S. (2021). pysisyphus: Exploring potential energy surfaces in ground and excited states. International Journal of Quantum Chemistry, 121(3). https://doi.org/10.1002/qua.26390
 
+## License
+`uma_pysis` is distributed under the **GNU General Public License version 3 (GPL-3.0)** derived from Pysisyphus.  
+
 ## Citation
 This work is by-product of [**ML/MM toolkit**](https://github.com/t-0hmura/mlmm_toolkit). If you find this work helpful for your research, please cite:  
 *Detailed methodological notes and benchmarks will be released shortly on **ChemRxiv**.*
