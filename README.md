@@ -1,4 +1,4 @@
-# UMA – Pysisyphus Interface: `uma_pysis`
+# UMA – Pysisyphus Interface
 
 A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *Machine Learning Interatomic Potential* (MLIP) to use with the [**Pysisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software suite for the exploration of potential energy surfaces.  
 
