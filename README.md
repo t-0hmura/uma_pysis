@@ -1,6 +1,6 @@
 # UMA – Pysisyphus Interface: `uma_pysis`
 
-A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine‑learned interatomic potentials* to use with the [**Pysisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software suite for the exploration of potential energy surfaces.  
+A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresearch/fairchem) *machine learning interatomic potentials* to use with the [**Pysisyphus** by J. Steinmetzer et al.](https://github.com/eljost/pysisyphus), a software suite for the exploration of potential energy surfaces.  
 
 In this implementation, Energy, Forces and **Analytic Hessians** were extracted from the UMA model by back‑propagating *twice* through its neural network. This interface connects them to Pysisyphus so you can carry out growing‑string calculations, transition‑state searches, vibrational analysis, $\Delta G^{\ddagger}$ & $\Delta G$ calculations etc., with one of the latest MLIPs.
 
