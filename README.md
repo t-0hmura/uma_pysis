@@ -71,11 +71,11 @@ calc = uma_pysis(charge=0, spin=1, model="uma-s-1p1", task_name="omol", device="
 geom.set_calculator(calc)
 
 E = geom.energy     # Hartree
-F = geom.forces     # Hartree·Bohr^{-1}
+F = geom.forces     # Hartree·Bohr⁻¹
 H = geom.hessian    # (3N × 3N) analytic Hessian
 
 print(f'Energy: {E:.6f} Hartree')
-print(f'Max Force : {F.max():.6f} Hartree·Bohr^{-1}')
+print(f'Max Force : {F.max():.6f} Hartree·Bohr⁻¹')
 print(f"Hessian shape: {H.shape}")
 ```
 
@@ -104,7 +104,7 @@ cd examples/small
 uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one **in ONE command** from structures of **Reactant** & **Product**.  
-> It should be $\Delta G^{\ddagger} = 176.53 kJ mol^{-1} ≒ 42.18 kcal mol^{-1}$ and $\Delta G = 57.08 kJ mol^{-1} ≒ 13.64 kcal mol^{-1}$.
+> It should be $\Delta G^{\ddagger}$ = 176.53 kJ mol⁻¹ ≒ 42.18 kcal mol⁻¹ and $\Delta G$ = 57.08 kJ mol⁻¹ ≒ 13.64 kcal mol⁻¹.
 
 Also, running  
 ```bash
@@ -112,7 +112,7 @@ cd examples/large
 uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement catalyzed by *Spiroligozyme* BPC13 (an enzyme-mimicking compound) **in ONE command** from a structure of **TS candidate** (Parker, M. et al. (2014). J. Am. Chem. Soc. 136(10), 3817–3827. doi: 10.1021/ja409214c).  
-> It should be $\Delta G^{\ddagger} = 83.4 kJ mol^{-1} ≒ 19.9 kcal mol^{-1}$ and $\Delta G = -6.76 kJ mol^{-1} ≒ -1.62 kcal mol^{-1}$. (Reactant is shown as 'Right' in the log.)
+> It should be $\Delta G^{\ddagger}$ = 83.4 kJ mol⁻¹ ≒ 19.9 kcal mol⁻¹ and $\Delta G$ = -6.76 kJ mol⁻¹ ≒ -1.62 kcal mol⁻¹. (Reactant is shown as 'Right' in the log.)
 
 > See **https://pysisyphus.readthedocs.io** for more information about **Pysisyphus**.
 
