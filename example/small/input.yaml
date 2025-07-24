@@ -7,7 +7,7 @@ cos:
  climb: True
 opt:
  type: string
- align: False
+ align: True
  max_cycles: 100
 tsopt:
  type: rsirfo
