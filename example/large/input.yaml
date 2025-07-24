@@ -8,6 +8,8 @@ tsopt:
  trust_radius: 0.05
  trust_min: 0.01
  hessian_recalc: 5
+ T: 298.15
+ p: 101325.0
 irc:
  type: eulerpc
  max_cycles: 100
