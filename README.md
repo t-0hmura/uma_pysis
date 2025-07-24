@@ -26,6 +26,7 @@ pip install --force-reinstall torch==2.7.0 --index-url https://download.pytorch.
 pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login
 ```
+> UMA model is on Hugging Face Hub. You need to log in once (See https://github.com/facebookresearch/fairchem)
 
 **Dependencies**
 
