@@ -16,13 +16,13 @@ tsopt:
  trust_radius: 0.05
  trust_min: 0.01
  trust_max: 0.10
- hessian_recalc: 5
+ hessian_recalc: 1
  T: 298.15
  p: 101325.0
 irc:
  type: eulerpc
  max_cycles: 100
- hessian_recalc: 5
+ hessian_recalc: 1
  step_length: 0.05
 endopt:
  type: rfo
@@ -31,7 +31,7 @@ endopt:
  trust_radius: 0.05
  trust_min: 0.01
  trust_max: 0.10
- hessian_recalc: 5
+ hessian_recalc: 1
  T: 298.15
  p: 101325.0
 calc:
