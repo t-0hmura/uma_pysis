@@ -112,8 +112,7 @@ cd examples/large
 uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement catalyzed by *Spiroligozyme* BPC13 (an enzyme-mimicking compound) **in ONE command** from a structure of **TS candidate** (Parker, M. et al. (2014). J. Am. Chem. Soc. 136(10), 3817–3827. doi: 10.1021/ja409214c).  
-> It should be $\Delta G^{\ddagger} = 83.4 kJ mol^{-1} ≒ 19.9 kcal mol^{-1}$ and $\Delta G = -6.76 kJ mol^{-1} ≒ -1.62 kcal mol^{-1}$.
-> (Reactant is shown as 'Right' in the log.)
+> It should be $\Delta G^{\ddagger} = 83.4 kJ mol^{-1} ≒ 19.9 kcal mol^{-1}$ and $\Delta G = -6.76 kJ mol^{-1} ≒ -1.62 kcal mol^{-1}$. (Reactant is shown as 'Right' in the log.)
 
 > See **https://pysisyphus.readthedocs.io** for more information about **Pysisyphus**.
 
