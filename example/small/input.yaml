@@ -1,5 +1,5 @@
 geom:
- type: cart
+ type: dlc
  fn: [reac.xyz, prod.xyz]
 cos:
  type: gs
