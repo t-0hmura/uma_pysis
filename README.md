@@ -127,4 +127,4 @@ calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrange
 
 ## Citation
 This work is by-product of [**ML/MM toolkit**](https://github.com/t-0hmura/mlmm_toolkit). If you find this work helpful for your research, please cite:  
-*Detailed methodological notes and benchmarks will be released shortly on **ChemRxiv**.*
+[3] Ohmura, T., Inoue, S., Terada, T. (2025). ML/MM toolkit – Towards Accelerated Mechanistic Investigation of Enzymatic Reactions. ChemRxiv. doi:10.26434/chemrxiv-2025-jft1k
