@@ -6,6 +6,8 @@ A wrapper that lets you call [Meta’s **UMA**](https://github.com/facebookresea
 
 In this implementation, Energy, Forces and **Analytic Hessians** were extracted from the UMA model by back‑propagating *twice* through its neural network. This interface connects them to Pysisyphus so you can carry out growing‑string calculations, transition‑state searches, vibrational analysis, $\Delta G^{\ddagger}$ & $\Delta G$ calculations etc., with one of the latest MLIPs.
 
+Because analytic Hessians can be computed inexpensively, you can recompute them at every step of a geometry optimization or IRC calculation, allowing more strict mode‑following analyses throughout.
+
 ---
 
 ## 1 · Installation (including `fairchem-core` and `pysisyphus` installation)
