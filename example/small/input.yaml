@@ -13,6 +13,8 @@ tsopt:
  type: rsirfo
  do_hess: True
  thresh: gau
+ trust_radius: 0.05
+ trust_min: 0.01
  hessian_recalc: 5
 irc:
  type: eulerpc
@@ -23,6 +25,9 @@ endopt:
  type: rfo
  do_hess: True
  thresh: gau
+ trust_radius: 0.05
+ trust_min: 0.01
+ hessian_recalc: 5
  T: 298.15
  p: 101325.0
 calc:
