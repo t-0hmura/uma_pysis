@@ -13,7 +13,7 @@ In this implementation, Energy, Forces and **Analytic Hessians** were extracted 
 ### CUDA 12.6
 
 ```bash
-pip install fairchem-core
+pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu126
 pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login    # required to access the pretrained UMA checkpoints
 ```
@@ -21,13 +21,13 @@ huggingface-cli login    # required to access the pretrained UMA checkpoints
 ### CUDA 12.8 (recommended for RTX 50 series)
 
 ```bash
-pip install fairchem-core
-pip install --force-reinstall torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
 pip install git+https://github.com/t-0hmura/uma_pysis.git
 huggingface-cli login
 ```
 > UMA model is on Hugging Face Hub. You need to log in once.  
-> See https://github.com/facebookresearch/fairchem
+> See https://github.com/facebookresearch/fairchem   
+> In order to resolve its dependencies, `uma_pysis` internally installs `fairchem-core` from forked repositories.
 
 **Dependencies**
 

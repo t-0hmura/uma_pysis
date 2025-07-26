@@ -4,15 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uma_pysis"
-description = "UMA to Pysisyphus Interface"
+description = "UMA - Pysisyphus Interface"
 readme = "README.md"
 authors = [{name = "Takuto Ohmura"}]
 license = {file = "LICENSE"}
 dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = [
-    "pysisyphus",
-    "torch",
+    "fairchem-core @ git+https://github.com/t-0hmura/fairchem.git#subdirectory=packages/fairchem-core",
+    "pysisyphus", 
+    "torch>=2.6.0",
     "numpy<2.0",
     "ase>=3.25.0",
     "thermoanalysis @ git+https://github.com/eljost/thermoanalysis.git"
