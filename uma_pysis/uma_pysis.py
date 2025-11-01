@@ -62,7 +62,7 @@ class UMAcore:
             if isinstance(m, nn.Dropout):
                 m.p = 0.0
 
-        self.elem      = list(elem)
+        self.elem      = [e.capitalize() for e in elem]
         self.charge    = charge
         self.spin      = spin
         self.task_name = task_name
