@@ -73,7 +73,7 @@ class UMAcore:
 
     # ----------------------------------------------------------------
     def _ase_to_batch(self, atoms: Atoms):
-        """Convert ASE Atoms → UMA AtomicData(Batch). Only used when backend='uma'."""
+        """Convert ASE Atoms → UMA AtomicData(Batch)."""
 
         default_max_neigh = self.predict.model.module.backbone.max_neighbors
         default_radius    = self.predict.model.module.backbone.cutoff
