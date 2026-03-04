@@ -1,0 +1,45 @@
+geom:
+ type: dlc
+ fn: [reac.xyz, prod.xyz]
+cos:
+ type: gs
+ max_nodes: 10
+ climb: True
+opt:
+ type: string
+ align: True
+ max_cycles: 100
+tsopt:
+ type: rsirfo
+ do_hess: True
+ thresh: gau
+ trust_radius: 0.05
+ trust_min: 0.01
+ trust_max: 0.05
+ hessian_recalc: 10
+ T: 298.15
+ p: 101325.0
+irc:
+ type: eulerpc
+ max_cycles: 100
+ hessian_recalc: 10
+ step_length: 0.05
+endopt:
+ type: rfo
+ do_hess: True
+ thresh: gau
+ trust_radius: 0.05
+ trust_min: 0.01
+ trust_max: 0.05
+ hessian_recalc: 10
+ T: 298.15
+ p: 101325.0
+calc:
+ type: uma_pysis
+ charge: 0
+ spin: 1
+ model: uma-s-1p1
+ task_name: omol
+ device: auto
+ solvent: water
+ solvent_model: alpb

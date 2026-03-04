@@ -122,14 +122,22 @@ The **examples** directory has the following content:
 
 ```
 examples/
-├── small/              # Example of small system
+├── small/              # Example of small system (gas phase)
 │   ├── reac.xyz        # Reactant geometry
 │   ├── prod.xyz        # Product geometry
-│   ├── input.yaml      # Input for Pysisyphus (Reactant & Product --> $\Delta G^{\ddagger}$ & $\Delta G$)
+│   ├── input.yaml      # Input for Pysisyphus (Reactant & Product --> ΔG‡ & ΔG)
 │   └── example.py      # Example for Python API
-├── large/              # Example of large system
+├── large/              # Example of large system (gas phase)
 │   ├── ts_cand.xyz     # TS candidate geometry
-│   └── input.yaml      # Input for Pysisyphus (TS candidate --> $\Delta G^{\ddagger}$ & $\Delta G$)
+│   └── input.yaml      # Input for Pysisyphus (TS candidate --> ΔG‡ & ΔG)
+├── solvent_alpb/       # Example with ALPB implicit solvent (water)
+│   ├── reac.xyz
+│   ├── prod.xyz
+│   └── input.yaml      # Same reaction as small/ but with solvent: water
+├── solvent_cpcmx/      # Example with CPCM-X implicit solvent (water)
+│   ├── reac.xyz
+│   ├── prod.xyz
+│   └── input.yaml      # Requires xTB built with -DWITH_CPCMX=ON
 └── run.sh              # Bash script to run every example
 ```
 
