@@ -26,11 +26,11 @@ from typing import Sequence
 import numpy as np
 
 from pysisyphus.calculators.Calculator import Calculator
-from pysisyphus.constants import BOHR2ANG, AU2EV
+from pysisyphus.constants import BOHR2ANG, ANG2BOHR, AU2EV
 
 # Unit conversion (atomic units <-> eV/Ang)
 _EV2AU = 1.0 / AU2EV
-_ANG2BOHR = 1.0 / BOHR2ANG
+_ANG2BOHR = ANG2BOHR
 _F_EVAA_2_AU = _EV2AU / _ANG2BOHR
 _H_EVAA_2_AU = _EV2AU / _ANG2BOHR / _ANG2BOHR
 

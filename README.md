@@ -40,7 +40,7 @@ huggingface-cli login
 | fairchem‑core | — |
 | Pysisyphus | — |
 | ASE | >= 3.25.0 |
-| NumPy | < 2.0 |
+| NumPy | — |
 
 ---
 
@@ -51,7 +51,7 @@ huggingface-cli login
 ```bash
 uma_pysis input.yaml
 ```
-When you install this library, a command named `uma_pysis` and a Pysisyphus calculator are automatically registered in your environment. By passing a Pysisyphus YAML input file like the one above, you can run all of Pysisyphus's features with UMA. In the YAML file, configure the calculator as shown below. For an example, see `examples/small/input.yaml`.
+When you install this library, a command named `uma_pysis` and a Pysisyphus calculator are automatically registered in your environment. By passing a Pysisyphus YAML input file like the one above, you can run all of Pysisyphus's features with UMA. In the YAML file, configure the calculator as shown below. For an example, see `example/small/input.yaml`.
 ```yaml
 calc:
  type: uma_pysis   # Calculator type for Pysisyphus. No need to change.
@@ -67,7 +67,7 @@ For all available parameters, see [`OPTIONS.md`](OPTIONS.md).
 ### Python API
 
 ```python
-# examples/small/example.py
+# example/small/example.py
 from uma_pysis import uma_pysis
 from pysisyphus.io.xyz import geom_from_xyz
 
@@ -118,10 +118,10 @@ For multi-worker inference and HPC (Ray cluster) setup, see [`HPC_MULTI_WORKER.m
 
 ## 5 · Examples
 
-The **examples** directory has the following content:
+The **example** directory has the following content:
 
 ```
-examples/
+example/
 ├── small/              # Example of small system (gas phase)
 │   ├── reac.xyz        # Reactant geometry
 │   ├── prod.xyz        # Product geometry
@@ -143,7 +143,7 @@ examples/
 
 Running
 ```bash
-cd examples/small
+cd example/small
 uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement from allyl phenyl ether to 6-(prop-2-en-1-yl) cyclohexa-2,4-dien-1-one **in ONE command** from structures of **Reactant** & **Product**.
@@ -151,7 +151,7 @@ calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrange
 
 Also, running
 ```bash
-cd examples/large
+cd example/large
 uma_pysis input.yaml
 ```
 calculate $\Delta G^{\ddagger}$ and $\Delta G$ of the Aromatic Claisen rearrangement catalyzed by *Spiroligozyme* BPC13 (an enzyme-mimicking compound) **in ONE command** from a structure of **TS candidate** (Parker, M. et al. (2014). J. Am. Chem. Soc. 136(10), 3817–3827. doi: 10.1021/ja409214c).

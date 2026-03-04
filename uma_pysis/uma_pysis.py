@@ -24,7 +24,7 @@ from fairchem.core.datasets import data_list_collater
 try:
     from fairchem.core.units.mlip_unit.predict import ParallelMLIPPredictUnit
     from fairchem.core.units.mlip_unit.api.inference import guess_inference_settings
-except Exception:
+except (ImportError, ModuleNotFoundError):
     ParallelMLIPPredictUnit = None
     guess_inference_settings = None
 

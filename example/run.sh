@@ -1,24 +1,26 @@
 #!/bin/bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 echo "=== small (gas phase) ==="
-cd ./small/
+cd "${SCRIPT_DIR}/small/"
 uma_pysis input.yaml | tee pysis.log
 python3 example.py
 
 echo ""
 echo "=== large (gas phase) ==="
-cd ../large/
+cd "${SCRIPT_DIR}/large/"
 uma_pysis input.yaml | tee pysis.log
 
 echo ""
 echo "=== solvent_alpb (water, ALPB) ==="
-cd ../solvent_alpb/
+cd "${SCRIPT_DIR}/solvent_alpb/"
 uma_pysis input.yaml | tee pysis.log
 
 # NOTE: solvent_cpcmx requires xTB built with -DWITH_CPCMX=ON
 # Uncomment below if CPCM-X is available:
 # echo ""
 # echo "=== solvent_cpcmx (water, CPCM-X) ==="
-# cd ../solvent_cpcmx/
+# cd "${SCRIPT_DIR}/solvent_cpcmx/"
 # uma_pysis input.yaml | tee pysis.log

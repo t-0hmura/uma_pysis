@@ -8,7 +8,7 @@ from xTB implicit-solvent terms on the same geometry:
     dH = H(solv) - H(vac)
 """
 
-from __future__ import absolute_import, division, print_function
+from __future__ import annotations
 
 import concurrent.futures
 import os
@@ -242,7 +242,7 @@ def _run_xtb(
             "xTB command not found: '{}'. Set --xtb-cmd correctly.".format(xtb_cmd)
         ) from exc
     except Exception as exc:
-        raise XTBError("Failed to run xTB command '{}': {}".format(" ".join(cmd), exc))
+        raise XTBError("Failed to run xTB command '{}': {}".format(" ".join(cmd), exc)) from exc
 
     if proc.returncode != 0:
         out_tail = "\n".join((proc.stdout or "").splitlines()[-20:])
