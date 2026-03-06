@@ -57,7 +57,7 @@ calc:
  type: uma_pysis   # Calculator type for Pysisyphus. No need to change.
  charge: 0         # Charge of input system.
  spin: 1           # Multiplicity of input system.
- model: uma-s-1p1  # Name of UMA model checkpoint. Currently, uma-s-1p1 and uma-m-1p1 (and uma-s-1) are available.
+ model: uma-s-1p2  # Name of UMA model checkpoint. Currently, uma-s-1p1, uma-s-1p2 and uma-m-1p1 are available.
  task_name: omol   # Task name. Currently, oc20, omat, omol, odac and omc are available.
  device: auto      # "auto", "cpu", or "cuda".
 ```
@@ -72,7 +72,7 @@ from uma_pysis import uma_pysis
 from pysisyphus.io.xyz import geom_from_xyz
 
 geom = geom_from_xyz('reac.xyz')
-calc = uma_pysis(charge=0, spin=1, model="uma-s-1p1", task_name="omol", device="auto")
+calc = uma_pysis(charge=0, spin=1, model="uma-s-1p2", task_name="omol", device="auto")
 
 geom.set_calculator(calc)
 
