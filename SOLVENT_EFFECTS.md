@@ -51,7 +51,7 @@ calc:
 from uma_pysis import uma_pysis
 from uma_pysis.solvent import SolventCorrectedCalculator
 
-base = uma_pysis(charge=0, spin=1, model="uma-s-1p2", device="auto")
+base = uma_pysis(charge=0, spin=1, model="uma-s-1p1", device="auto")
 calc = SolventCorrectedCalculator(base, solvent="water", solvent_model="alpb")
 
 # Use calc as a normal Pysisyphus calculator

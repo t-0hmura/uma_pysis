@@ -14,7 +14,7 @@ They can also be passed as keyword arguments to `uma_pysis(...)` in the Python A
 | `type` | Calculator type for Pysisyphus. | `uma_pysis` |
 | `charge` | Total system charge. | `0` |
 | `spin` | Spin multiplicity (2S+1). | `1` |
-| `model` | UMA pretrained model name. | `"uma-s-1p2"` |
+| `model` | UMA pretrained model name. | `"uma-s-1p1"` |
 | `task_name` | Task tag recorded in UMA batches. | `"omol"` |
 | `device` | `"auto"`, `"cpu"`, or `"cuda"`. | `"auto"` |
 
@@ -86,7 +86,7 @@ calc:
  type: uma_pysis
  charge: 0
  spin: 1
- model: uma-s-1p2
+ model: uma-s-1p1
  task_name: omol
  device: auto
  hessian_calc_mode: Analytical
@@ -104,7 +104,7 @@ from uma_pysis import uma_pysis
 calc = uma_pysis(
     charge=0,
     spin=1,
-    model="uma-s-1p2",
+    model="uma-s-1p1",
     task_name="omol",
     device="auto",
     hessian_calc_mode="Analytical",

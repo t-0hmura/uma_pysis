@@ -2,7 +2,7 @@ from uma_pysis import uma_pysis
 from pysisyphus.io.xyz import geom_from_xyz
 
 geom = geom_from_xyz('reac.xyz')
-calc = uma_pysis(charge=0, spin=1, model="uma-s-1p2", task_name="omol", device="auto")
+calc = uma_pysis(charge=0, spin=1, model="uma-s-1p1", task_name="omol", device="auto")
 
 geom.set_calculator(calc)
 
