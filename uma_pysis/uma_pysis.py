@@ -9,6 +9,9 @@ Supports multi-worker inference and xTB implicit-solvent correction.
 from __future__ import annotations
 from typing import Any, Dict, Optional, Sequence
 
+import argparse
+import os
+import sys
 import time
 
 import numpy as np
@@ -63,6 +66,7 @@ class UMAcore:
         max_neigh: Optional[int] = None,
         radius:    Optional[float] = None,
         r_edges:   bool = False,
+        weights_file: Optional[str] = None,
     ):
         # Select device ------------------------------------------------
         if device == "auto":
@@ -76,32 +80,16 @@ class UMAcore:
 
         self._AtomicData = AtomicData
         self._collater   = data_list_collater
+        self.model_name = model
+        self.weights_file = None
+        if weights_file is not None:
+            self.weights_file = os.path.abspath(os.path.expanduser(os.fspath(weights_file)))
+            if not os.path.isfile(self.weights_file):
+                raise FileNotFoundError(f"Weights file does not exist: {self.weights_file}")
+        self._hessian_ready = False
 
         # Predictor ----------------------------------------------------
-        if self.parallel_predict:
-            if (ParallelMLIPPredictUnit is None) or (guess_inference_settings is None):
-                raise ImportError(
-                    "workers>1 requested, but ParallelMLIPPredictUnit/guess_inference_settings "
-                    "could not be imported from fairchem. Please ensure your FAIR-Chem installation "
-                    "includes `fairchem-core[extras]`."
-                )
-            ckpt_path = pretrained_mlip.pretrained_checkpoint_path_from_name(model)
-            inference_settings = guess_inference_settings("default")
-            atom_refs = pretrained_mlip.get_reference_energies(model, reference_type="atom_refs")
-            form_elem_refs = pretrained_mlip.get_reference_energies(model, reference_type="form_elem_refs")
-            self.predict = ParallelMLIPPredictUnit(
-                inference_model_path=str(ckpt_path),
-                device=self.device_str,
-                inference_settings=inference_settings,
-                atom_refs=atom_refs,
-                form_elem_refs=form_elem_refs,
-                num_workers=self.workers,
-                num_workers_per_node=self.workers_per_node,
-            )
-        else:
-            self.predict = pretrained_mlip.get_predict_unit(
-                model, device=self.device_str, workers=self.workers
-            )
+        self.predict = self._load_predictor()
 
         self.has_torch_model = hasattr(self.predict, "model") and isinstance(
             getattr(self.predict, "model", None), nn.Module
@@ -120,6 +108,47 @@ class UMAcore:
         self._max_neigh = max_neigh
         self._radius    = radius
         self._r_edges   = r_edges
+
+    def _load_predictor(self, inference_settings="default"):
+        if self.parallel_predict:
+            if (ParallelMLIPPredictUnit is None) or (guess_inference_settings is None):
+                raise ImportError(
+                    "workers>1 requested, but ParallelMLIPPredictUnit/guess_inference_settings "
+                    "could not be imported from fairchem. Please ensure your FAIR-Chem installation "
+                    "includes `fairchem-core[ray]`."
+                )
+            ckpt_path = self.weights_file
+            atom_refs = None
+            form_elem_refs = None
+            if ckpt_path is None:
+                ckpt_path = pretrained_mlip.pretrained_checkpoint_path_from_name(self.model_name)
+                atom_refs = pretrained_mlip.get_reference_energies(self.model_name, reference_type="atom_refs")
+                try:
+                    form_elem_refs = pretrained_mlip.get_reference_energies(
+                        self.model_name, reference_type="form_elem_refs",
+                    )["refs"]
+                except (TypeError, KeyError):
+                    form_elem_refs = None
+            return ParallelMLIPPredictUnit(
+                inference_model_path=str(ckpt_path),
+                device=self.device_str,
+                inference_settings=guess_inference_settings(inference_settings),
+                atom_refs=atom_refs,
+                form_elem_refs=form_elem_refs,
+                num_workers=self.workers,
+                num_workers_per_node=self.workers_per_node,
+            )
+        if self.weights_file is not None:
+            from fairchem.core.units.mlip_unit import load_predict_unit
+
+            return load_predict_unit(
+                self.weights_file, device=self.device_str, workers=self.workers,
+                inference_settings=inference_settings,
+            )
+        return pretrained_mlip.get_predict_unit(
+            self.model_name, device=self.device_str, workers=self.workers,
+            inference_settings=inference_settings,
+        )
 
     # ----------------------------------------------------------------
     def _model_backbone(self):
@@ -146,13 +175,15 @@ class UMAcore:
         atoms.info.update({"charge": self.charge, "spin": self.spin})
         data = self._AtomicData.from_ase(
             atoms,
+            r_data_keys=["spin", "charge"],
             max_neigh=max_neigh,
             radius   =radius,
             r_edges  =r_edges,
         )
         data.dataset = self.task_name
         batch = self._collater([data], otf_graph=True)
-        if not self.parallel_predict:
+        # FAIR-Chem keeps its model on CPU until the first prediction initializes it.
+        if not self.parallel_predict and getattr(self.predict, "lazy_model_intialized", True):
             batch = batch.to(self.device)
         return batch
 
@@ -169,6 +200,24 @@ class UMAcore:
         forces / hessian : return toggles
         Returns dict with keys energy (eV), forces (eV/Å), hessian (torch)
         """
+        if hessian and not self.parallel_predict and not self._hessian_ready:
+            from fairchem.core.units.mlip_unit.api.inference import InferenceSettings
+
+            settings = InferenceSettings(
+                activation_checkpointing=False, merge_mole=False, compile=False,
+            )
+            if hasattr(settings, "execution_mode"):
+                settings.execution_mode = "general"
+            self.predict = self._load_predictor(settings)
+            self.has_torch_model = isinstance(getattr(self.predict, "model", None), nn.Module)
+            if hasattr(self.predict, "move_to_device"):
+                self.predict.move_to_device()
+            if self.has_torch_model:
+                for module in self.predict.model.modules():
+                    if isinstance(module, nn.Dropout):
+                        module.p = 0.0
+            self._hessian_ready = True
+
         atoms = Atoms(self.elem, positions=coord_ang)
         batch = self._ase_to_batch(atoms)
 
@@ -241,6 +290,7 @@ class uma_pysis(Calculator):
         max_neigh: Optional[int] = None,
         radius:    Optional[float] = None,
         r_edges:   bool = False,
+        weights_file: Optional[str] = None,
         **kwargs,
     ):
         super().__init__(charge=charge, mult=spin, **kwargs)
@@ -249,6 +299,7 @@ class uma_pysis(Calculator):
             charge=charge,
             spin=spin,
             model=model,
+            weights_file=weights_file,
             task_name=task_name,
             device=device,
             workers=workers,
@@ -431,8 +482,34 @@ def _uma_pysis_factory(**kwargs):
 
 def run_pysis():
     """Enable `uma_pysis input.yaml`"""
-    run.CALC_DICT["uma_pysis"] = _uma_pysis_factory
-    run.run()
+    parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)
+    parser.add_argument("-w", "--weights-file", default=None, help="Path to downloaded UMA weights.")
+    args, remaining = parser.parse_known_args()
+    weights_file = args.weights_file
+    if weights_file is not None:
+        weights_file = os.path.abspath(os.path.expanduser(weights_file))
+        if not os.path.isfile(weights_file):
+            parser.error(f"Weights file does not exist: {weights_file}")
+
+    def factory(*factory_args, **kwargs):
+        if weights_file is not None:
+            configured = kwargs.get("weights_file")
+            if configured is not None and os.path.abspath(os.path.expanduser(configured)) != weights_file:
+                raise ValueError("--weights-file conflicts with calc.weights_file.")
+            kwargs["weights_file"] = weights_file
+        return _uma_pysis_factory(*factory_args, **kwargs)
+
+    run.CALC_DICT["uma_pysis"] = factory
+    original_argv = sys.argv
+    sys.argv = [original_argv[0], *remaining]
+    try:
+        run.run()
+    except SystemExit as exc:
+        if exc.code == 0 and any(flag in remaining for flag in ("-h", "--help")):
+            parser.print_help()
+        raise
+    finally:
+        sys.argv = original_argv
 
 
 if __name__ == "__main__":

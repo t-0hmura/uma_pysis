@@ -15,6 +15,7 @@ They can also be passed as keyword arguments to `uma_pysis(...)` in the Python A
 | `charge` | Total system charge. | `0` |
 | `spin` | Spin multiplicity (2S+1). | `1` |
 | `model` | UMA pretrained model name. | `"uma-s-1p1"` |
+| `weights_file` | Downloaded inference checkpoint path; bypasses automatic downloads. | `null` |
 | `task_name` | Task tag recorded in UMA batches. | `"omol"` |
 | `device` | `"auto"`, `"cpu"`, or `"cuda"`. | `"auto"` |
 
@@ -48,7 +49,7 @@ When `workers > 1`, analytical Hessians are automatically disabled and FiniteDif
 | `workers` | Number of predictor workers. | `1` |
 | `workers_per_node` | Workers per compute node (for distributed setup). | `1` |
 
-When `workers > 1`, the `ParallelMLIPPredictUnit` from fairchem is used. This requires `fairchem-core[extras]` to be installed.
+When `workers > 1`, the `ParallelMLIPPredictUnit` from fairchem is used. This requires `fairchem-core[ray]` to be installed.
 
 > **Note**: When `workers > 1`, analytical Hessians are not available.
 

@@ -10,33 +10,25 @@ In this implementation, Energy, Forces and **Analytic Hessians** were extracted 
 
 ## 1 · Installation (including `fairchem-core` and `pysisyphus` installation)
 
-### CUDA 12.6
+### CUDA 13.0 (recommended)
 
 ```bash
-pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu126
+pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cu130
 pip install git+https://github.com/t-0hmura/uma_pysis.git
-huggingface-cli login    # required to access the pretrained UMA checkpoints
-```
-
-### CUDA 12.9
-
-```bash
-pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu129
-pip install git+https://github.com/t-0hmura/uma_pysis.git
-huggingface-cli login
+hf auth login    # required to access the pretrained UMA checkpoints
 ```
 
 > UMA model is on Hugging Face Hub. You need to log in once.
 > See https://github.com/facebookresearch/fairchem
 > `uma_pysis` installs `fairchem-core` from PyPI as a dependency.
-> CUDA 12.8~ are recommended for Blackwell architecture including RTX 50 series
+> CUDA 13.0 is recommended, including for Blackwell architecture (RTX 50 series).
 
 **Dependencies**
 
 | package | version |
 |---------|---------|
 | Python  | ≥ 3.11  |
-| PyTorch | 2.6 + (*or* 2.7.0 / 2.8.0 for newer CUDA) |
+| PyTorch | 2.13.x (current fairchem-core requirement) |
 | fairchem‑core | — |
 | Pysisyphus | — |
 | ASE | >= 3.25.0 |
@@ -63,6 +55,14 @@ calc:
 ```
 
 For all available parameters, see [`OPTIONS.md`](OPTIONS.md).
+
+### Local model weights
+
+```bash
+uma_pysis input.yaml --weights-file uma.pt
+```
+
+The short option is `-w`. The same file can be set as `weights_file: uma.pt` in the YAML `calc:` block or as `weights_file="uma.pt"` in the Python API. Local weights bypass automatic checkpoint and reference-file downloads. If CLI and YAML both specify weights, they must name the same file.
 
 ### Python API
 

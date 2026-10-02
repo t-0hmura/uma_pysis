@@ -14,8 +14,6 @@ dependencies = [
     "fairchem-core",
     "pysisyphus", 
     "torch>=2.6.0",
-    "torch_geometric",
-    "torch_scatter",
     "numpy",
     "ase>=3.25.0",
     "thermoanalysis @ git+https://github.com/eljost/thermoanalysis.git"

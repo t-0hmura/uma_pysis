@@ -8,10 +8,10 @@
 
 ## Requirements
 
-Multi-worker mode requires `fairchem-core[extras]`:
+Multi-worker mode requires `fairchem-core[ray]`:
 
 ```bash
-pip install "fairchem-core[extras]"
+pip install "fairchem-core[ray]"
 ```
 
 ## YAML Configuration
